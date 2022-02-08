@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "tc-todo-list",
+  "version": "${version}",
+
+  "name": "TC Todo List",
+  "description": "工程列表",
+  "authors": [
+    "Aye10032"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/tc-todo-list/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.aye10032.tctodolist.TCTodoList"
+    ]
+  },
+  "mixins": [
+    "tc-todo-list.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
