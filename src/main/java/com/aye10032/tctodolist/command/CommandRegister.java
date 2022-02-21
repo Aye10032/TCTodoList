@@ -53,25 +53,4 @@ public class CommandRegister {
                                 }))
         );
     }
-
-    private static String getUUID(String player) {
-        var ref = new Object() {
-            String uuid = "";
-        };
-        HttpRequest request = HttpRequest.newBuilder(URI.create("https://api.mojang.com/users/profiles/minecraft/" + player))
-                .timeout(Duration.ofSeconds(DURATION))
-                .GET()
-                .build();
-        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .thenAccept(response -> client.send(() -> {
-                    JsonElement result = parser.parse(response);
-                    if (result instanceof JsonNull) {
-                        TCTodoList.LOGGER.error("");
-                    } else {
-                        ref.uuid = result.getAsJsonObject().get("id").getAsString();
-                    }
-                }));
-        return ref.uuid;
-    }
 }

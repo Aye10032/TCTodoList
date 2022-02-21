@@ -1,0 +1,9 @@
+{
+  "category.tc-dodo-list.title": "TC Todo List",
+  "key.tc-dodo-list.showgui": "打开界面",
+  "text.tc-dodo-list.test": "测试按键",
+  "gui.tc-dodo-list.title": "TODO List",
+  "gui.tc-dodo-list.task_button": "任务列表",
+  "gui.tc-dodo-list.message_button": "留言列表",
+  "gui.tc-dodo-list.examplebutt": "测试"
+}
