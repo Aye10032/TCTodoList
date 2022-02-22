@@ -13,8 +13,10 @@ import net.minecraft.util.Identifier;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.RasterOp;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -28,6 +30,9 @@ import java.util.UUID;
 public class TodoListGUI extends LightweightGuiDescription {
     private int HEIGHT_GRID;
     private int HEIGHT;
+
+    private WBox box;
+    private WScrollPanel sp;
 
     public TodoListGUI(int scaledWidth, int scaledHeight) {
         System.out.println("w:" + scaledWidth + " h:" + scaledHeight);
@@ -51,24 +56,52 @@ public class TodoListGUI extends LightweightGuiDescription {
         message_btn.setAlignment(HorizontalAlignment.CENTER);
         root.add(message_btn, 14, 2, 6, 2);
 
-        WBox box = new WBox(Axis.VERTICAL);
+        box = new WBox(Axis.VERTICAL);
 //        box.setSpacing(2);
 //        box.setInsets(new Insets(1,10,1,0));
         box.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
         for (int i = 0; i < 10; i++) {
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File("D:\\Aye10032.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            TaskPanel panel = new TaskPanel("村民工程", image);
-            box.add(panel, 180, 40);
+            TaskPanel panel = new TaskPanel("村民工程", "12 13");
+            box.add(panel, 152, 40);
         }
-        WScrollPanel sp = new WScrollPanel(box);
+        sp = new WScrollPanel(box);
 //        sp.setBackgroundPainter(BackgroundPainter.createNinePatch(new Identifier("tc-todo-list", "texture/panel_transparent.png")));
-        root.add(sp, 3, 5, 21, HEIGHT_GRID - 6);
+        root.add(sp, 3, 5, 18, HEIGHT_GRID - 6);
+
+        task_btn.setOnClick(() ->{
+            box = new WBox(Axis.VERTICAL);
+            box.setHorizontalAlignment(HorizontalAlignment.CENTER);
+
+            for (int i = 0; i < 10; i++) {
+                TaskPanel panel = new TaskPanel("村民", "12 13");
+                box.add(panel, 152, 40);
+            }
+            root.remove(sp);
+            sp = new WScrollPanel(box);
+            root.add(sp, 3, 5, 18, HEIGHT_GRID - 6);
+            root.validate(this);
+        });
+        message_btn.setOnClick(() ->{
+            box = new WBox(Axis.VERTICAL);
+            box.setHorizontalAlignment(HorizontalAlignment.CENTER);
+
+            for (int i = 0; i < 10; i++) {
+                BufferedImage image = null;
+                try {
+                    image = ImageIO.read(new File("D:\\Aye10032.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                UnderTakePanel panel = new UnderTakePanel("Aye10032", image, "测试用留言消息", new Date().getTime());
+                box.add(panel, 154, 40);
+            }
+            root.remove(sp);
+            sp = new WScrollPanel(box);
+            root.add(sp, 3, 5, 18, HEIGHT_GRID - 6);
+            root.validate(this);
+        });
+
 
         root.validate(this);
     }

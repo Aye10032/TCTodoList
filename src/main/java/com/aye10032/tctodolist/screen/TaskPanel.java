@@ -3,6 +3,8 @@ package com.aye10032.tctodolist.screen;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
+import io.github.cottonmc.cotton.gui.widget.data.Color;
+import io.github.cottonmc.cotton.gui.widget.data.InputResult;
 
 import java.awt.image.BufferedImage;
 
@@ -14,15 +16,13 @@ import java.awt.image.BufferedImage;
  * @author: Aye10032
  * @date: 2022/2/21 下午 10:27
  */
-public class TaskPanel extends WPlainPanel {
+public class TaskPanel extends WPlainPanel{
 
-    public TaskPanel(String name, BufferedImage image) {
-        this.add(new WLabel(name), 4, 4, 60, 20);
-        WImageWidget head = new WImageWidget(image, 2);
-        this.add(head, 6, 10);
+    public TaskPanel(String name, String pos) {
+        WLabel name_label = new WLabel(name);
+        name_label.setColor(Color.BLACK.toRgb());
+        this.add(name_label, 8, 8);
 //            panel.setSize(180, 40);
         this.setBackgroundPainter(BackgroundPainter.VANILLA);
     }
-
-
 }
