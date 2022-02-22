@@ -1,14 +1,21 @@
 package com.aye10032.tctodolist.screen;
 
+import com.mojang.blaze3d.platform.TextureUtil;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
-import io.github.cottonmc.cotton.gui.widget.data.Axis;
-import io.github.cottonmc.cotton.gui.widget.data.Color;
-import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
-import io.github.cottonmc.cotton.gui.widget.data.Insets;
+import io.github.cottonmc.cotton.gui.widget.data.*;
+import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.client.util.DefaultSkinHelper;
+import net.minecraft.data.client.model.Texture;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @program: TCTodoList
@@ -50,7 +57,13 @@ public class TodoListGUI extends LightweightGuiDescription {
         box.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
         for (int i = 0; i < 10; i++) {
-            TaskPanel panel = new TaskPanel();
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(new File("D:\\Aye10032.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            TaskPanel panel = new TaskPanel("村民工程", image);
             box.add(panel, 180, 40);
         }
         WScrollPanel sp = new WScrollPanel(box);

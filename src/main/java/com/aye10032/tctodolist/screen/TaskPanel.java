@@ -3,7 +3,8 @@ package com.aye10032.tctodolist.screen;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
-import io.github.cottonmc.cotton.gui.widget.data.Insets;
+
+import java.awt.image.BufferedImage;
 
 /**
  * @program: TCTodoList
@@ -15,11 +16,13 @@ import io.github.cottonmc.cotton.gui.widget.data.Insets;
  */
 public class TaskPanel extends WPlainPanel {
 
-    public TaskPanel(){
-//        TaskPanel panel = new TaskPanel();
-        this.add(new WLabel("aaa"), 4, 4, 60, 20);
+    public TaskPanel(String name, BufferedImage image) {
+        this.add(new WLabel(name), 4, 4, 60, 20);
+        WImageWidget head = new WImageWidget(image, 2);
+        this.add(head, 6, 10);
 //            panel.setSize(180, 40);
         this.setBackgroundPainter(BackgroundPainter.VANILLA);
     }
+
 
 }
